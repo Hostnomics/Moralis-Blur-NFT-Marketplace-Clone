@@ -28,9 +28,18 @@ Wrote to C:\Users\Blockchain Data API\Documents\Blockchain_Dev\Moralis-YouTube\B
 
 ```
 
-- Install a few dependencies:
-- We want an express server.
-- We want dotenv
-- We want Cors
-- We'll want Moralis (API)
-- `npm i express dotenv cors moralis` - (4:49)
+- Install a few dependencies: (4:49)
+  - We want to use an express server.
+  - We want dotenv
+  - We want Cors
+  - We'll want Moralis (API)
+
+> `npm i express dotenv cors moralis`
+
+## Add Solidity Contracts at [(6:02)](https://youtu.be/WVEqX8DL4KE?t=361).
+
+NFT.sol: https://youtu.be/WVEqX8DL4KE?t=376
+
+NFTMarketplace: https://youtu.be/WVEqX8DL4KE?t=428
+
+Update backend package.json with start. (10:05)
