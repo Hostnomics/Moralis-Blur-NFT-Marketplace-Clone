@@ -71,4 +71,40 @@ contract NFTMarketplace is ReentrancyGuard {
             false
         );
     }
+
+    function createMarketSale(
+        address nftContract,
+        uint256 itemId
+    ) public payable nonReentrant {
+        uint256 price = idToMarketItem[itemId].price;
+        uint256 tokenId = idToMarketItem[itemId].tokenId;
+        bool sold = idToMarketItem[itemId].sold;
+        require(
+            msg.value == price,
+            "Please submit the asking price in order to complete the purchase"
+        );
+        require(sold != true, "This sale has already finished");
+
+        idToMarketItem[itemId].seller.transfer(msg.value);
+        IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
+        idToMarketItem[itemId].owner = payable(msg.sender);
+        _itemsSold.increment();
+        idToMarketItem[itemId].sold = true;
+    }
+
+    function fetchMarketItems() public view returns (MarketItem[] memory) {
+        uint256 itemCount = _itemIds.current();
+        uint256 unsoldItemCount = _itemIds.current() - _itemsSold.current();
+        uint256 currentIndex = 0;
+
+        MarketItem[] memory items = new MarketItem[](unsoldItemCount);
+        for (uint256 i = 0; i < itemCount; i++) {
+            if (idToMarketItem[i + 1].owner == address(0)) {
+                uint256 currentId = i + 1;
+                MarketItem storage currentItem = idToMarketItem[currentId];
+                items[currentIndex] = currentItem;
+                currentIndex += 1;
+            }
+        }
+    }
 }
