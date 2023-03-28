@@ -43,3 +43,14 @@ NFT.sol: https://youtu.be/WVEqX8DL4KE?t=376
 NFTMarketplace: https://youtu.be/WVEqX8DL4KE?t=428
 
 Update backend package.json with start. (10:05)
+
+## Add Dependencies to Frontend Directory [(17:20)](https://youtu.be/WVEqX8DL4KE?t=1039).
+
+- Depencies:
+  - wagmi
+  - ethers
+  - axios
+  - @web3uikit/core
+  - @web3uikit/icons
+
+> npm i wagmi ethers axios @web3uikit/core @web3uikit/icons
